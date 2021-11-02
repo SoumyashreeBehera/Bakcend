@@ -28,6 +28,7 @@ const atuhenticate = async (req, res, next) => {
 };
 
 const verifyToken = (token) => {
+  console.log(token);
   return new Promise((resolve, reject) => {
     jwt.verify(token, process.env.JWT_SECRET_KEY, function (err, user) {
       if (err) return reject(err);
