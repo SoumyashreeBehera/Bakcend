@@ -79,4 +79,13 @@ const getOne = async (req, res) => {
   }
 };
 
-module.exports = { register, login, newToken, getOne };
+const getEveryOne = async (req, res) => {
+  try {
+    let user = await User.find().lean().exec();
+    return res.status(201).json({ data: user });
+  } catch (err) {
+    return res.status(401).json({ message: err.message });
+  }
+};
+
+module.exports = { register, login, newToken, getOne, getEveryOne };

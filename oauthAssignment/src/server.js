@@ -1,6 +1,11 @@
 const express = require("express");
 const connect = require("./config/db");
-const { register, login, getOne } = require("./controller/user.controller");
+const {
+  register,
+  login,
+  getOne,
+  getEveryOne,
+} = require("./controller/user.controller");
 const productController = require("./controller/product.controller");
 const passport = require("./config/passport");
 const app = express();
@@ -8,6 +13,8 @@ const app = express();
 app.use(express.json());
 app.post("/register", register);
 app.post("/login", login);
+app.get("/login", getEveryOne);
+
 app.patch("/user/:id", getOne);
 app.use(passport.initialize());
 app.use("/product", productController);

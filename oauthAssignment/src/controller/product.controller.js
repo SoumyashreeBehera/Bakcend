@@ -31,6 +31,17 @@ router.patch("/:id", authenticate, authorizeOne(), async (req, res) => {
   }
 });
 
+router.delete("/:id", authenticate, authorizeOne(), async (req, res) => {
+  try {
+    const product = await Product.findByIdAndDelete(req.params.id)
+      .lean()
+      .exec();
+    return res.status(200).json({ data: product });
+  } catch (err) {
+    return res.send("you are not allowed to visit this page");
+  }
+});
+
 router.post("", async (req, res) => {
   try {
     const product = await Product.create(req.body);

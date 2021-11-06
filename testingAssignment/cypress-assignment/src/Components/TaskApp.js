@@ -20,6 +20,7 @@ const TodoApp = () => {
       isCompleted: false,
     };
     try {
+      // setError(false);
       let res = await addTask(newTask);
       setTodos([...todos, res.data]);
       setTask("");
@@ -44,7 +45,7 @@ const TodoApp = () => {
       <div className="container-fluid text-center">
         <header className="p-2">
           <h1>Tasks</h1>
-          {error && <h3 className="error-id text-danger">error</h3>}
+          {error && <h3 className="error-id ">error</h3>}
 
           <TaskForm
             value={task}
